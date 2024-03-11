@@ -1,0 +1,31 @@
+{
+  "name": "@bunnio/type-guardian",
+  "version": "0.0.1",
+  "description": "Openapi translator to typescript interface and zod objects",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0Baltazar0/type-guardian.git"
+  },
+  "keywords": [
+    "zod",
+    "openapi",
+    "interface"
+  ],
+  "author": "Boldizsar Pal",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/0Baltazar0/type-guardian/issues"
+  },
+  "homepage": "https://github.com/0Baltazar0/type-guardian#readme",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "yaml": "^2.4.0"
+  }
+}
