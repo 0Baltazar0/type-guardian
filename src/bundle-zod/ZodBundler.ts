@@ -427,7 +427,7 @@ export class ZodBundler {
   compile() {
     this.source.removeRemote();
     this.dataLines.push(
-      `import { z } from "zod";import {zodGTRefine,zodLTRefine,zodXorRefine,} from "@bunnio/type-guardian/custom-zod/types";`
+      `import { z } from "zod";import {zodGTRefine,zodLTRefine,zodXorRefine,} from "@bunnio/type-guardian/dist/custom-zod/types";`
     );
     const components = this.translateComponents();
     this.dataLines.push(components);

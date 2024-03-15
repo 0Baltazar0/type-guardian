@@ -7,7 +7,7 @@ A simple type and interface translator for openapi to interface, and zod definit
 It is only intended as CLI tool, however it does contain a set of zod tools, you can import them via
 
 ```
-import {zodGTRefine, zodLTRefine, zodXorRefine} from "@bunnio/type-guardian/custom-zod/types"
+import {zodGTRefine, zodLTRefine, zodXorRefine} from "@bunnio/type-guardian/dist/custom-zod/types"
 ```
 
 # CLI usage
