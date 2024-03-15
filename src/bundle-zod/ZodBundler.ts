@@ -217,7 +217,7 @@ export class ZodBundler {
         )}}`
       );
     }
-    return `const components = {${componentLines.join(",")}}`;
+    return `const components = {${componentLines.join(",")}} as const`;
   }
   dumpToCache(filename: string, data: string) {
     this.dump(join(this.cacheDest, filename), data);
@@ -380,7 +380,7 @@ export class ZodBundler {
         .map((key) => {
           return `"${key}":${this.unWindPaths(paths[key])}`;
         })
-        .join(",")}}`;
+        .join(",")}} as const`;
     }
     return undefined;
   }
@@ -427,7 +427,7 @@ export class ZodBundler {
   compile() {
     this.source.removeRemote();
     this.dataLines.push(
-      `import { z } from "zod";import {zodGTRefine,zodLTRefine,zodXorRefine,} from "../src/custom-zod/types";`
+      `import { z } from "zod";import {zodGTRefine,zodLTRefine,zodXorRefine,} from "@bunnio/type-guardian/custom-zod/types";`
     );
     const components = this.translateComponents();
     this.dataLines.push(components);

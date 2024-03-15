@@ -82,7 +82,9 @@ export class LookUpBundler {
     });
   }
   compile() {
-    this.dataLines.push("const lookupJson = " + this.source.getAsJson());
+    this.dataLines.push(
+      "const lookupJson = " + this.source.getAsJson() + " as const"
+    );
     this.dump(this.destFile, this.dataLines.join("\n"));
   }
 
