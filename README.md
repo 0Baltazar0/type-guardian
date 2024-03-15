@@ -2,7 +2,7 @@
 
 A simple type and interface translator for openapi to interface, and zod definitions
 
-# CONSIDER AS _whatever comes before pre alpha_ VESRION
+# CONSIDER AS _whatever comes before pre alpha_ VERSION
 
 It is only intended as CLI tool, however it does contain a set of zod tools, you can import them via
 
