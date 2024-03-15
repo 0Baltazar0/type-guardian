@@ -206,7 +206,7 @@ export class InterfaceBundler {
         )}}`
       );
     }
-    return `interface components {${componentLines.join(";")}}`;
+    return `export interface components {${componentLines.join(";")}}`;
   }
   dumpToCache(filename: string, data: string) {
     mkdirSync(this.cacheDest, { recursive: true });

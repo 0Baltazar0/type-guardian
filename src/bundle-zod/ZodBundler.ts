@@ -217,7 +217,7 @@ export class ZodBundler {
         )}}`
       );
     }
-    return `const components = {${componentLines.join(",")}} as const`;
+    return `export const components = {${componentLines.join(",")}} as const`;
   }
   dumpToCache(filename: string, data: string) {
     this.dump(join(this.cacheDest, filename), data);
