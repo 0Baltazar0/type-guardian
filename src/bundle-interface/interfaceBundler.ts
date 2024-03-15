@@ -56,7 +56,7 @@ interface InternalStructure {
   };
 }
 
-export class Bundler {
+export class InterfaceBundler {
   private sourceFile;
   private destFile;
   private cacheDest;
@@ -117,7 +117,7 @@ export class Bundler {
       });
       return `{ ${values
         .map((v) => {
-          return `${v[0]}${required?.includes(v[0]) ? "?" : ""}:${v[1]}`;
+          return `${v[0]}${required?.includes(v[0]) ? "" : "?"}:${v[1]}`;
         })
         .join(",")}}`;
     }
@@ -425,7 +425,8 @@ export class Bundler {
     this.dataLines.push(components);
     const paths = this.translatePaths();
     if (paths) this.dataLines.push(paths);
-    this.saveToCache();
+    // this.saveToCache();
+    this.dump(this.destFile, this.dataLines.join("\n"));
   }
 
   testPreCompile() {
@@ -445,45 +446,40 @@ export class Bundler {
       this.translateComponents()
     );
   }
-
+  dump(fileNamePath: string, data: string) {
+    const pathTo = join(fileNamePath, "../");
+    mkdirSync(pathTo, { recursive: true });
+    writeFileSync(fileNamePath, data, {
+      encoding: "utf-8",
+    });
+  }
   static async from_file_or_files(source: string, dest: string, cache: string) {
     const sourceStat = await stat(source);
-    const destStat = await stat(dest);
+
     if (sourceStat.isFile()) {
-      if (destStat.isFile()) {
-        return [
-          new Bundler(
-            new Preformatter(source),
-            dest.endsWith(".ts") ? dest : dest + ".ts",
-            cache
-          ),
-        ];
-      }
       return [
-        new Bundler(
+        new InterfaceBundler(
           new Preformatter(source),
           join(
             dest,
             basename(source, extname(source)),
-            extname(source) + ".ts"
+            basename(source, extname(source)) + ".interface.ts"
           ),
           cache
         ),
       ];
     } else {
       const sourceFiles = await readdir(source);
-      if (destStat.isFile()) {
-        throw Error("Dest is not a dir but the source is!");
-      }
+
       return sourceFiles
         .filter((src) => src.endsWith(".yaml") || src.endsWith(".yml"))
         .map((src) => {
-          return new Bundler(
+          return new InterfaceBundler(
             new Preformatter(src),
             join(
               dest,
               basename(source, extname(source)),
-              extname(source) + ".ts"
+              basename(source, extname(source)) + ".interface.ts"
             ),
             cache
           );

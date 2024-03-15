@@ -1,10 +1,16 @@
 {
   "name": "@bunnio/type-guardian",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Openapi translator to typescript interface and zod objects",
   "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "zod-gen": "ts-node src/zodBuilder",
+    "int-gen": "ts-node src/interfaceBuilder",
+    "full-gen": "ts-node src/index",
+    "post-build": "ts-node src/post-build",
+    "build": "tsc",
+    "build-full": "tsc && ts-node src/post-build"
   },
   "repository": {
     "type": "git",
@@ -15,6 +21,11 @@
     "openapi",
     "interface"
   ],
+  "bin": {
+    "tg-zod": "dist/zodBuilder.js",
+    "tg-int": "dist/interfaceBuilder.js",
+    "tg-full": "dist/index.js"
+  },
   "author": "Boldizsar Pal",
   "license": "GPL-3.0-or-later",
   "bugs": {
@@ -26,6 +37,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "yaml": "^2.4.0"
+    "yaml": "^2.4.0",
+    "zod": "^3.22.4"
   }
 }

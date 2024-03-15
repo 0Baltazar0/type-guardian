@@ -1,0 +1,1171 @@
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        name: &id001
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        street: &id002
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        city: &id003
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        state: &id004
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        country: &id005
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        postcode: &id006
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        location: &id007
+          type: string
+          description: Not Found
+          example: Can't tell ya
+        address_line_2: &id008
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        user_id: &id009
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        group_id: &id010
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        address_type: &id011
+          type: string
+          description: Enum from source AddressType
+          example: Look at the supplied values
+          enum:
+            - home
+            - work
+            - personal
+            - interest
+            - vacation
+        access_type: &id012
+          type: string
+          description: Enum from source GenericPublicityType
+          example: Look at the supplied values
+          enum:
+            - personal
+            - family
+            - friends
+            - groups
+            - work
+            - public
+      required:
+        - id
+        - city
+        - country
+        - postcode
+        - location
+        - user_id
+        - address_type
+        - access_type
+      x-builder-type: serialize
+      x-builder-table: address
+    UpdateAddress:
+      type: object
+      properties:
+        name: *id001
+        street: *id002
+        city: *id003
+        state: *id004
+        country: *id005
+        postcode: *id006
+        location: *id007
+        address_line_2: *id008
+        user_id: *id009
+        group_id: *id010
+        address_type: *id011
+        access_type: *id012
+      x-builder-type: update
+      x-builder-table: address
+    CreateAddress:
+      type: object
+      properties:
+        name: *id001
+        street: *id002
+        city: *id003
+        state: *id004
+        country: *id005
+        postcode: *id006
+        location: *id007
+        address_line_2: *id008
+        user_id: *id009
+        group_id: *id010
+        address_type: *id011
+        access_type: *id012
+      required:
+        - city
+        - country
+        - postcode
+        - location
+        - user_id
+        - address_type
+        - access_type
+      x-builder-type: create
+      x-builder-table: address
+    Group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        name: &id022
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        summary: &id023
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        access_type: &id024
+          type: string
+          description: Enum from source GenericPublicityType
+          example: Look at the supplied values
+          enum:
+            - personal
+            - family
+            - friends
+            - groups
+            - work
+            - public
+        policies: &id025
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        theme_settings: &id026
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+      required:
+        - id
+        - name
+        - summary
+        - access_type
+      x-builder-type: serialize
+      x-builder-table: group
+    GroupInvites:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        inviter: &id027
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        invitee: &id028
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        group_id: &id029
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        meta_data: &id030
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+      required:
+        - id
+        - invitee
+        - group_id
+      x-python-model: GroupInvite
+      x-builder-type: serialize
+      x-builder-table: group_invites
+    GroupToUser:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        user_id: &id031
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        group_id: &id032
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        meta_data: &id033
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        access_level: &id034
+          type: string
+          description: Enum from source GenericAccessLevel
+          example: Look at the supplied values
+          enum:
+            - read
+            - edit
+            - admin
+            - owner
+            - none
+      required:
+        - id
+        - user_id
+        - group_id
+        - access_level
+      x-builder-type: serialize
+      x-builder-table: group_to_user
+    Image:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        profile: &id035
+          type: boolean
+          description: Originates from Boolean
+          example: 'True'
+        filename: &id036
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        format: &id037
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        created_at: &id038
+          type: string
+          description: Originates from DateTime
+          example: '2023-01-01 10:00:00'
+        user_id: &id039
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        group_id: &id040
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+      required:
+        - id
+      x-builder-type: serialize
+      x-builder-table: image
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        first_name: &id078
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        last_name: &id079
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        email: &id080
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        phone: &id081
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        notification_settings: &id082
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        theme_settings: &id083
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        application: &id084
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        has_facebook_connected: &id085
+          type: boolean
+          description: Originates from Boolean
+          example: 'True'
+      required:
+        - id
+        - first_name
+        - last_name
+        - email
+        - phone
+        - has_facebook_connected
+      x-builder-type: serialize
+      x-builder-table: user
+    MapMap:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        name: &id050
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        published: &id051
+          type: boolean
+          description: Originates from Boolean
+          example: 'True'
+        creator_id: &id052
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        map_style: &id053
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        default_marker_style: &id054
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        modals_style: &id055
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        buttons_style: &id056
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        clusters_style: &id057
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        sidebar_style: &id058
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        fonts_style: &id059
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        map_controls: &id060
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        custom_css: &id061
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+      required:
+        - id
+        - name
+        - published
+        - creator_id
+      x-builder-type: serialize
+      x-builder-table: map_map
+    MapMarkerGroup:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        name: &id070
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        group_marker_style: &id071
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        visibility: &id072
+          type: boolean
+          description: Originates from Boolean
+          example: 'True'
+        collapse: &id073
+          type: boolean
+          description: Originates from Boolean
+          example: 'True'
+        map_id: &id074
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+      required:
+        - id
+        - name
+        - group_marker_style
+        - visibility
+        - collapse
+        - map_id
+      x-builder-type: serialize
+      x-builder-table: map_marker_group
+    MapMarker:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        location: &id062
+          type: string
+          description: Not Found
+          example: Can't tell ya
+        name: &id063
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        plaint_text_address: &id064
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        address_prompt: &id065
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        marker_group_id: &id066
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        map_id: &id067
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        marker_style: &id068
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        marker_content: &id069
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+      required:
+        - id
+        - location
+        - name
+        - plaint_text_address
+        - address_prompt
+        - marker_group_id
+        - map_id
+        - marker_style
+        - marker_content
+      x-builder-type: serialize
+      x-builder-table: map_marker
+    MapImage:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        marker_id: &id042
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        map_id: &id043
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        image_name: &id044
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        mime_type: &id045
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        type: &id046
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        created_at: &id047
+          type: string
+          description: Originates from DateTime
+          example: '2023-01-01 10:00:00'
+        marker_group_id: &id048
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+      required:
+        - id
+        - marker_id
+        - map_id
+        - image_name
+        - mime_type
+        - type
+        - created_at
+        - marker_group_id
+      x-builder-type: serialize
+      x-builder-table: map_image
+    FriendsInvite:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        inviter_id: &id018
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        invitee_id: &id019
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        email: &id020
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        meta_data: &id021
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+      required:
+        - id
+        - inviter_id
+      x-python-model: FriendInvite
+      x-builder-type: serialize
+      x-builder-table: friends_invite
+    Friend:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        user1_id: &id015
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        user2_id: &id016
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        meta_data: &id017
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+      required:
+        - id
+        - user1_id
+        - user2_id
+      x-builder-type: serialize
+      x-builder-table: friend
+    CachedData:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        type:
+          type: string
+          description: Originates from String
+          example: '''string_value'''
+        data: &id013
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        invalidate: &id014
+          type: string
+          description: Originates from DateTime
+          example: '2023-01-01 10:00:00'
+      required:
+        - key
+        - type
+        - data
+        - invalidate
+      x-builder-type: serialize
+      x-builder-table: cached_data
+    UpdateCachedData:
+      type: object
+      properties:
+        data: *id013
+        invalidate: *id014
+      x-python-model: CacheData
+      x-builder-type: update
+      x-builder-table: cached_data
+    CreateCachedData:
+      type: object
+      properties:
+        data: *id013
+        invalidate: *id014
+      required:
+        - data
+        - invalidate
+      x-python-model: CacheData
+      x-builder-type: create
+      x-builder-table: cached_data
+    UpdateFriend:
+      type: object
+      properties:
+        user1_id: *id015
+        user2_id: *id016
+        meta_data: *id017
+      x-builder-type: update
+      x-builder-table: friend
+    CreateFriend:
+      type: object
+      properties:
+        user1_id: *id015
+        user2_id: *id016
+        meta_data: *id017
+      required:
+        - user1_id
+        - user2_id
+      x-builder-type: create
+      x-builder-table: friend
+    UpdateFriendsInvite:
+      type: object
+      properties:
+        inviter_id: *id018
+        invitee_id: *id019
+        email: *id020
+        meta_data: *id021
+      x-python-model: FriendInvite
+      x-builder-type: update
+      x-builder-table: friends_invite
+    CreateFriendsInvite:
+      type: object
+      properties:
+        inviter_id: *id018
+        invitee_id: *id019
+        email: *id020
+        meta_data: *id021
+      required:
+        - inviter_id
+      x-python-model: FriendInvite
+      x-builder-type: create
+      x-builder-table: friends_invite
+    UpdateGroup:
+      type: object
+      properties:
+        name: *id022
+        summary: *id023
+        access_type: *id024
+        policies: *id025
+        theme_settings: *id026
+      x-builder-type: update
+      x-builder-table: group
+    CreateGroup:
+      type: object
+      properties:
+        name: *id022
+        summary: *id023
+        access_type: *id024
+        policies: *id025
+        theme_settings: *id026
+      required:
+        - name
+        - summary
+        - access_type
+      x-builder-type: create
+      x-builder-table: group
+    UpdateGroupInvites:
+      type: object
+      properties:
+        inviter: *id027
+        invitee: *id028
+        group_id: *id029
+        meta_data: *id030
+      x-python-model: GroupInvite
+      x-builder-type: update
+      x-builder-table: group_invites
+    CreateGroupInvites:
+      type: object
+      properties:
+        inviter: *id027
+        invitee: *id028
+        group_id: *id029
+        meta_data: *id030
+      required:
+        - invitee
+        - group_id
+      x-python-model: GroupInvite
+      x-builder-type: create
+      x-builder-table: group_invites
+    UpdateGroupToUser:
+      type: object
+      properties:
+        user_id: *id031
+        group_id: *id032
+        meta_data: *id033
+        access_level: *id034
+      x-builder-type: update
+      x-builder-table: group_to_user
+    CreateGroupToUser:
+      type: object
+      properties:
+        user_id: *id031
+        group_id: *id032
+        meta_data: *id033
+        access_level: *id034
+      required:
+        - user_id
+        - group_id
+        - access_level
+      x-builder-type: create
+      x-builder-table: group_to_user
+    UpdateImage:
+      type: object
+      properties:
+        profile: *id035
+        filename: *id036
+        format: *id037
+        created_at: *id038
+        user_id: *id039
+        group_id: *id040
+      x-builder-type: update
+      x-builder-table: image
+    CreateImage:
+      type: object
+      properties:
+        profile: *id035
+        filename: *id036
+        format: *id037
+        created_at: *id038
+        user_id: *id039
+        group_id: *id040
+      x-builder-type: create
+      x-builder-table: image
+    CreateImageWithFiles:
+      type: object
+      properties:
+        profile: *id035
+        filename: *id036
+        format: *id037
+        created_at: *id038
+        user_id: *id039
+        group_id: *id040
+        data: &id041
+          type: string
+          description: Originates from LargeBinary
+          example: <multipart File>
+          format: binary
+          tsType: '[Blob,string]'
+      x-builder-type: create
+      x-builder-target: multipart
+      x-builder-table: image
+    UpdateImageWithFiles:
+      type: object
+      properties:
+        profile: *id035
+        filename: *id036
+        format: *id037
+        created_at: *id038
+        user_id: *id039
+        group_id: *id040
+        data: *id041
+      x-builder-type: update
+      x-builder-target: multipart
+      x-builder-table: image
+    UpdateImageOnlyFiles:
+      type: object
+      properties:
+        data: *id041
+      x-builder-type: update
+      x-builder-target: multipart
+      x-builder-table: image
+    ImageDataFile:
+      x-builder-type: fileonly
+      x-builder-target: multipart
+      x-builder-table: image
+      type: object
+      properties:
+        data: *id041
+      required:
+        - data
+    UpdateMapImage:
+      type: object
+      properties:
+        marker_id: *id042
+        map_id: *id043
+        image_name: *id044
+        mime_type: *id045
+        type: *id046
+        created_at: *id047
+        marker_group_id: *id048
+      x-builder-type: update
+      x-builder-table: map_image
+    CreateMapImage:
+      type: object
+      properties:
+        marker_id: *id042
+        map_id: *id043
+        image_name: *id044
+        mime_type: *id045
+        type: *id046
+        created_at: *id047
+        marker_group_id: *id048
+      required:
+        - marker_id
+        - map_id
+        - image_name
+        - mime_type
+        - type
+        - created_at
+        - marker_group_id
+      x-builder-type: create
+      x-builder-table: map_image
+    CreateMapImageWithFiles:
+      type: object
+      properties:
+        marker_id: *id042
+        map_id: *id043
+        image_name: *id044
+        mime_type: *id045
+        type: *id046
+        created_at: *id047
+        marker_group_id: *id048
+        image_data: &id049
+          type: string
+          description: Originates from LargeBinary
+          example: <multipart File>
+          format: binary
+          tsType: '[Blob,string]'
+      required:
+        - marker_id
+        - map_id
+        - image_name
+        - mime_type
+        - type
+        - created_at
+        - marker_group_id
+      x-builder-type: create
+      x-builder-target: multipart
+      x-builder-table: map_image
+    UpdateMapImageWithFiles:
+      type: object
+      properties:
+        marker_id: *id042
+        map_id: *id043
+        image_name: *id044
+        mime_type: *id045
+        type: *id046
+        created_at: *id047
+        marker_group_id: *id048
+        image_data: *id049
+      x-builder-type: update
+      x-builder-target: multipart
+      x-builder-table: map_image
+    UpdateMapImageOnlyFiles:
+      type: object
+      properties:
+        image_data: *id049
+      x-builder-type: update
+      x-builder-target: multipart
+      x-builder-table: map_image
+    MapimageImageDataFile:
+      x-builder-type: fileonly
+      x-builder-target: multipart
+      x-builder-table: map_image
+      type: object
+      properties:
+        image_data: *id049
+      required:
+        - image_data
+    UpdateMapMap:
+      type: object
+      properties:
+        name: *id050
+        published: *id051
+        creator_id: *id052
+        map_style: *id053
+        default_marker_style: *id054
+        modals_style: *id055
+        buttons_style: *id056
+        clusters_style: *id057
+        sidebar_style: *id058
+        fonts_style: *id059
+        map_controls: *id060
+        custom_css: *id061
+      x-builder-type: update
+      x-builder-table: map_map
+    CreateMapMap:
+      type: object
+      properties:
+        name: *id050
+        published: *id051
+        creator_id: *id052
+        map_style: *id053
+        default_marker_style: *id054
+        modals_style: *id055
+        buttons_style: *id056
+        clusters_style: *id057
+        sidebar_style: *id058
+        fonts_style: *id059
+        map_controls: *id060
+        custom_css: *id061
+      required:
+        - name
+        - published
+        - creator_id
+      x-builder-type: create
+      x-builder-table: map_map
+    UpdateMapMarker:
+      type: object
+      properties:
+        location: *id062
+        name: *id063
+        plaint_text_address: *id064
+        address_prompt: *id065
+        marker_group_id: *id066
+        map_id: *id067
+        marker_style: *id068
+        marker_content: *id069
+      x-builder-type: update
+      x-builder-table: map_marker
+    CreateMapMarker:
+      type: object
+      properties:
+        location: *id062
+        name: *id063
+        plaint_text_address: *id064
+        address_prompt: *id065
+        marker_group_id: *id066
+        map_id: *id067
+        marker_style: *id068
+        marker_content: *id069
+      required:
+        - location
+        - name
+        - plaint_text_address
+        - address_prompt
+        - marker_group_id
+        - map_id
+        - marker_style
+        - marker_content
+      x-builder-type: create
+      x-builder-table: map_marker
+    UpdateMapMarkerGroup:
+      type: object
+      properties:
+        name: *id070
+        group_marker_style: *id071
+        visibility: *id072
+        collapse: *id073
+        map_id: *id074
+      x-builder-type: update
+      x-builder-table: map_marker_group
+    CreateMapMarkerGroup:
+      type: object
+      properties:
+        name: *id070
+        group_marker_style: *id071
+        visibility: *id072
+        collapse: *id073
+        map_id: *id074
+      required:
+        - name
+        - group_marker_style
+        - visibility
+        - collapse
+        - map_id
+      x-builder-type: create
+      x-builder-table: map_marker_group
+    Notification:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        created_at: &id075
+          type: string
+          description: Originates from DateTime
+          example: '2023-01-01 10:00:00'
+        tags: &id076
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+        data: &id077
+          type: object
+          description: Originates from JSON
+          example: '{''key'': ''value''}'
+      required:
+        - id
+        - created_at
+        - tags
+        - data
+      x-builder-type: serialize
+      x-builder-table: notification
+    UpdateNotification:
+      type: object
+      properties:
+        created_at: *id075
+        tags: *id076
+        data: *id077
+      x-builder-type: update
+      x-builder-table: notification
+    CreateNotification:
+      type: object
+      properties:
+        created_at: *id075
+        tags: *id076
+        data: *id077
+      required:
+        - created_at
+        - tags
+        - data
+      x-builder-type: create
+      x-builder-table: notification
+    NotificationHolder:
+      type: object
+      properties:
+        user_id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+        notification_id:
+          type: string
+          description: Originates from UUID
+          example: '''123e4567-e89b-12d3-a456-426614174000'''
+      required:
+        - user_id
+        - notification_id
+      x-builder-type: serialize
+      x-builder-table: notification_holder
+    UpdateNotificationHolder:
+      type: object
+      properties: {}
+      x-builder-type: update
+      x-builder-table: notification_holder
+    CreateNotificationHolder:
+      type: object
+      properties: {}
+      x-builder-type: create
+      x-builder-table: notification_holder
+    UpdateUser:
+      type: object
+      properties:
+        first_name: *id078
+        last_name: *id079
+        email: *id080
+        phone: *id081
+        notification_settings: *id082
+        theme_settings: *id083
+        application: *id084
+        has_facebook_connected: *id085
+      x-builder-type: update
+      x-builder-table: user
+    CreateUser:
+      type: object
+      properties:
+        first_name: *id078
+        last_name: *id079
+        email: *id080
+        phone: *id081
+        notification_settings: *id082
+        theme_settings: *id083
+        application: *id084
+        has_facebook_connected: *id085
+      required:
+        - first_name
+        - last_name
+        - email
+        - phone
+        - has_facebook_connected
+      x-builder-type: create
+      x-builder-table: user
+    StringQueryBody:
+      x-s2o-item: true
+      oneOf:
+        - type: string
+        - type: array
+          items:
+            type: string
+        - type: boolean
+    StringQueryMode:
+      x-s2o-item: true
+      type: string
+      enum:
+        - like
+        - exact
+        - in
+        - is_null
+      default: exact
+    IntQueryBody:
+      x-s2o-item: true
+      oneOf:
+        - type: integer
+        - type: array
+          items:
+            type: integer
+        - type: boolean
+    IntQueryMode:
+      x-s2o-item: true
+      type: string
+      enum:
+        - from
+        - til
+        - range
+        - exact
+        - in
+        - is_null
+      default: exact
+    FloatQueryBody:
+      x-s2o-item: true
+      oneOf:
+        - type: number
+        - type: array
+          items:
+            type: number
+        - type: boolean
+    FloatQueryMode:
+      x-s2o-item: true
+      type: string
+      enum:
+        - from
+        - til
+        - range
+        - exact
+        - in
+        - is_null
+      default: exact
+    DateQueryBody:
+      x-s2o-item: true
+      oneOf:
+        - type: string
+        - type: array
+          items:
+            type: string
+        - type: boolean
+    DateQueryMode:
+      x-s2o-item: true
+      type: string
+      enum:
+        - from
+        - til
+        - range
+        - exact
+        - in
+        - is_null
+      default: exact
+    BoolQueryBody:
+      x-s2o-item: true
+      type: boolean
+    BoolQueryMode:
+      x-s2o-item: true
+      type: string
+      enum:
+        - is_true
+        - is_null
+      default: is_null
+    DefaultQueryBody:
+      x-s2o-item: true
+      type: boolean
+    DefaultQueryMode:
+      x-s2o-item: true
+      type: string
+      enum:
+        - is_null
+      default: is_null

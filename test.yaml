@@ -1,0 +1,475 @@
+openapi: 3.0.0
+info:
+  title: REST API for GroupToUser
+  description: API for managing the database modell GroupToUser
+  version: 1.0.0
+servers:
+  - url: path_to_connexion.com/group_to_user
+paths:
+  /group_to_user:
+    get:
+      summary: Get All GroupToUser
+      operationId: api.GroupToUser.get_all_group_to_user
+      parameters:
+        - x-s2o-item: true
+          in: query
+          name: search_id
+          required: false
+          schema:
+            $ref: "#/components/schemas/StringQueryBody"
+        - x-s2o-item: true
+          in: query
+          name: mode_id
+          required: false
+          schema:
+            $ref: "#/components/schemas/StringQueryMode"
+        - x-s2o-item: true
+          in: query
+          name: search_user_id
+          required: false
+          schema:
+            $ref: "#/components/schemas/StringQueryBody"
+        - x-s2o-item: true
+          in: query
+          name: mode_user_id
+          required: false
+          schema:
+            $ref: "#/components/schemas/StringQueryMode"
+        - x-s2o-item: true
+          in: query
+          name: search_group_id
+          required: false
+          schema:
+            $ref: "#/components/schemas/StringQueryBody"
+        - x-s2o-item: true
+          in: query
+          name: mode_group_id
+          required: false
+          schema:
+            $ref: "#/components/schemas/StringQueryMode"
+        - x-s2o-item: true
+          in: query
+          name: search_meta_data
+          required: false
+          schema:
+            $ref: "#/components/schemas/DefaultQueryBody"
+        - x-s2o-item: true
+          in: query
+          name: mode_meta_data
+          required: false
+          schema:
+            $ref: "#/components/schemas/DefaultQueryMode"
+        - x-s2o-item: true
+          in: query
+          name: search_access_level
+          required: false
+          schema:
+            $ref: "#/components/schemas/StringQueryBody"
+        - x-s2o-item: true
+          in: query
+          name: mode_access_level
+          required: false
+          schema:
+            $ref: "#/components/schemas/StringQueryMode"
+      responses:
+        "200":
+          x-s2o-item: true
+          description: All Grouptouser(s) returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GroupToUser"
+              x-s2o-item: true
+        "404":
+          x-s2o-item: true
+          description: Resource Not Found
+      x-target-model: GroupToUser
+    post:
+      summary: Create a GroupToUser
+      operationId: api.GroupToUser.create_group_to_user
+      requestBody:
+        description: The GroupToUser
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateGroupToUser"
+            x-s2o-item: true
+      responses:
+        "201":
+          description: The Grouptouser created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupToUser"
+        "403":
+          x-s2o-item: true
+          description: Resource not accessible
+        "404":
+          x-s2o-item: true
+          description: Resource Not Found
+      x-target-model: GroupToUser
+  /group_to_user/{group_to_user_id}:
+    get:
+      summary: Get a(n) GroupToUser
+      operationId: api.GroupToUser.get_group_to_user
+      parameters:
+        - in: path
+          name: group_to_user_id
+          description: The target Grouptouser id
+          required: true
+          schema:
+            type: string
+            description: Originates from UUID
+            example: "'123e4567-e89b-12d3-a456-426614174000'"
+          x-s2o-item: true
+      responses:
+        "200":
+          x-s2o-item: true
+          description: All Grouptouser(s) returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupToUser"
+              x-s2o-item: true
+        "403":
+          x-s2o-item: true
+          description: Resource not accessible
+        "404":
+          x-s2o-item: true
+          description: Resource Not Found
+      x-target-model: GroupToUser
+    put:
+      summary: Update a(n) GroupToUser
+      operationId: api.GroupToUser.update_group_to_user
+      parameters:
+        - in: path
+          name: group_to_user_id
+          description: The target Grouptouser id
+          required: true
+          schema:
+            type: string
+            description: Originates from UUID
+            example: "'123e4567-e89b-12d3-a456-426614174000'"
+          x-s2o-item: true
+      requestBody:
+        description: The update body for GroupToUser
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateGroupToUser"
+            x-s2o-item: true
+      responses:
+        "200":
+          description: The Grouptouser target has been updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupToUser"
+        "403":
+          x-s2o-item: true
+          description: Resource not accessible
+        "404":
+          x-s2o-item: true
+          description: Resource Not Found
+      x-target-model: GroupToUser
+    delete:
+      summary: Delete a(n) GroupToUser
+      operationId: api.GroupToUser.delete_group_to_user
+      parameters:
+        - in: path
+          name: group_to_user_id
+          description: The target Grouptouser id
+          required: true
+          schema:
+            type: string
+            description: Originates from UUID
+            example: "'123e4567-e89b-12d3-a456-426614174000'"
+          x-s2o-item: true
+      responses:
+        "204":
+          x-s2o-item: true
+          description: The Grouptouser is deleted
+        "403":
+          x-s2o-item: true
+          description: Resource not accessible
+        "404":
+          x-s2o-item: true
+          description: Resource Not Found
+      x-target-model: GroupToUser
+  /group_to_user/{group_to_user_id}/user:
+    get:
+      summary: Get a(n) User
+      operationId: api.GroupToUser.get_group_to_user_user
+      parameters:
+        - in: path
+          name: group_to_user_id
+          description: The target Grouptouser id
+          required: true
+          schema:
+            type: string
+            description: Originates from UUID
+            example: "'123e4567-e89b-12d3-a456-426614174000'"
+          x-s2o-item: true
+      responses:
+        "200":
+          x-s2o-item: true
+          description: All Grouptouser(s) returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+              x-s2o-item: true
+        "403":
+          x-s2o-item: true
+          description: Resource not accessible
+        "404":
+          x-s2o-item: true
+          description: Resource Not Found
+      x-target-model: GroupToUser
+      x-target-relation: user
+  /group_to_user/{group_to_user_id}/group:
+    get:
+      summary: Get a(n) Group
+      operationId: api.GroupToUser.get_group_to_user_group
+      parameters:
+        - in: path
+          name: group_to_user_id
+          description: The target Grouptouser id
+          required: true
+          schema:
+            type: string
+            description: Originates from UUID
+            example: "'123e4567-e89b-12d3-a456-426614174000'"
+          x-s2o-item: true
+      responses:
+        "200":
+          x-s2o-item: true
+          description: All Grouptouser(s) returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Group"
+              x-s2o-item: true
+        "403":
+          x-s2o-item: true
+          description: Resource not accessible
+        "404":
+          x-s2o-item: true
+          description: Resource Not Found
+      x-target-model: GroupToUser
+      x-target-relation: group
+components:
+  schemas:
+    StringQueryBody:
+      x-s2o-item: true
+      oneOf:
+        - type: string
+        - type: array
+          items:
+            type: string
+        - type: boolean
+    StringQueryMode:
+      x-s2o-item: true
+      type: string
+      enum:
+        - like
+        - exact
+        - in
+        - is_null
+      default: exact
+    DefaultQueryBody:
+      x-s2o-item: true
+      type: boolean
+    DefaultQueryMode:
+      x-s2o-item: true
+      type: string
+      enum:
+        - is_null
+      default: is_null
+    GroupToUser:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: "'123e4567-e89b-12d3-a456-426614174000'"
+        user_id:
+          type: string
+          description: Originates from UUID
+          example: "'123e4567-e89b-12d3-a456-426614174000'"
+        group_id:
+          type: string
+          description: Originates from UUID
+          example: "'123e4567-e89b-12d3-a456-426614174000'"
+        meta_data:
+          type: object
+          description: Originates from JSON
+          example: "{'key': 'value'}"
+        access_level:
+          type: string
+          description: Enum from source GenericAccessLevel
+          example: Look at the supplied values
+          enum:
+            - read
+            - edit
+            - admin
+            - owner
+            - none
+      required:
+        - id
+        - user_id
+        - group_id
+        - access_level
+      x-builder-type: serialize
+      x-builder-table: group_to_user
+    CreateGroupToUser:
+      type: object
+      properties:
+        user_id:
+          type: string
+          description: Originates from UUID
+          example: "'123e4567-e89b-12d3-a456-426614174000'"
+        group_id:
+          type: string
+          description: Originates from UUID
+          example: "'123e4567-e89b-12d3-a456-426614174000'"
+        meta_data:
+          type: object
+          description: Originates from JSON
+          example: "{'key': 'value'}"
+        access_level:
+          type: string
+          description: Enum from source GenericAccessLevel
+          example: Look at the supplied values
+          enum:
+            - read
+            - edit
+            - admin
+            - owner
+            - none
+      required:
+        - user_id
+        - group_id
+        - access_level
+      x-builder-type: create
+      x-builder-table: group_to_user
+    UpdateGroupToUser:
+      type: object
+      properties:
+        user_id:
+          type: string
+          description: Originates from UUID
+          example: "'123e4567-e89b-12d3-a456-426614174000'"
+        group_id:
+          type: string
+          description: Originates from UUID
+          example: "'123e4567-e89b-12d3-a456-426614174000'"
+        meta_data:
+          type: object
+          description: Originates from JSON
+          example: "{'key': 'value'}"
+        access_level:
+          type: string
+          description: Enum from source GenericAccessLevel
+          example: Look at the supplied values
+          enum:
+            - read
+            - edit
+            - admin
+            - owner
+            - none
+      x-builder-type: update
+      x-builder-table: group_to_user
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: "'123e4567-e89b-12d3-a456-426614174000'"
+        first_name:
+          type: string
+          description: Originates from String
+          example: "'string_value'"
+        last_name:
+          type: string
+          description: Originates from String
+          example: "'string_value'"
+        email:
+          type: string
+          description: Originates from String
+          example: "'string_value'"
+        phone:
+          type: string
+          description: Originates from String
+          example: "'string_value'"
+        notification_settings:
+          type: object
+          description: Originates from JSON
+          example: "{'key': 'value'}"
+        theme_settings:
+          type: object
+          description: Originates from JSON
+          example: "{'key': 'value'}"
+        application:
+          type: object
+          description: Originates from JSON
+          example: "{'key': 'value'}"
+        has_facebook_connected:
+          type: boolean
+          description: Originates from Boolean
+          example: "True"
+      required:
+        - id
+        - first_name
+        - last_name
+        - email
+        - phone
+        - has_facebook_connected
+      x-builder-type: serialize
+      x-builder-table: user
+    Group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Originates from UUID
+          example: "'123e4567-e89b-12d3-a456-426614174000'"
+        name:
+          type: string
+          description: Originates from String
+          example: "'string_value'"
+        summary:
+          type: string
+          description: Originates from String
+          example: "'string_value'"
+        access_type:
+          type: string
+          description: Enum from source GenericPublicityType
+          example: Look at the supplied values
+          enum:
+            - personal
+            - family
+            - friends
+            - groups
+            - work
+            - public
+        policies:
+          type: object
+          description: Originates from JSON
+          example: "{'key': 'value'}"
+        theme_settings:
+          type: object
+          description: Originates from JSON
+          example: "{'key': 'value'}"
+      required:
+        - id
+        - name
+        - summary
+        - access_type
+      x-builder-type: serialize
+      x-builder-table: group

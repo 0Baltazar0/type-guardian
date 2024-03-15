@@ -1,0 +1,264 @@
+openapi: 3.0.0
+info:
+  title: REST API for GroupToUser
+  description: API for managing the database modell GroupToUser
+  version: 1.0.0
+servers:
+  - url: path_to_connexion.com/group_to_user
+paths:
+  /group_to_user:
+    get:
+      summary: Get All GroupToUser
+      operationId: api.GroupToUser.get_all_group_to_user
+      parameters:
+        - x-s2o-item: true
+          in: query
+          name: search_id
+          required: false
+          schema:
+            $ref: modells.yaml#/components/schemas/StringQueryBody
+        - x-s2o-item: true
+          in: query
+          name: mode_id
+          required: false
+          schema:
+            $ref: modells.yaml#/components/schemas/StringQueryMode
+        - x-s2o-item: true
+          in: query
+          name: search_user_id
+          required: false
+          schema:
+            $ref: modells.yaml#/components/schemas/StringQueryBody
+        - x-s2o-item: true
+          in: query
+          name: mode_user_id
+          required: false
+          schema:
+            $ref: modells.yaml#/components/schemas/StringQueryMode
+        - x-s2o-item: true
+          in: query
+          name: search_group_id
+          required: false
+          schema:
+            $ref: modells.yaml#/components/schemas/StringQueryBody
+        - x-s2o-item: true
+          in: query
+          name: mode_group_id
+          required: false
+          schema:
+            $ref: modells.yaml#/components/schemas/StringQueryMode
+        - x-s2o-item: true
+          in: query
+          name: search_meta_data
+          required: false
+          schema:
+            $ref: modells.yaml#/components/schemas/DefaultQueryBody
+        - x-s2o-item: true
+          in: query
+          name: mode_meta_data
+          required: false
+          schema:
+            $ref: modells.yaml#/components/schemas/DefaultQueryMode
+        - x-s2o-item: true
+          in: query
+          name: search_access_level
+          required: false
+          schema:
+            $ref: modells.yaml#/components/schemas/StringQueryBody
+        - x-s2o-item: true
+          in: query
+          name: mode_access_level
+          required: false
+          schema:
+            $ref: modells.yaml#/components/schemas/StringQueryMode
+      responses:
+        '404':
+          x-s2o-item: true
+          description: Resource Not Found
+        '200':
+          x-s2o-item: true
+          description: All Grouptouser(s) returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: modells.yaml#/components/schemas/GroupToUser
+              x-s2o-item: true
+      x-target-model: GroupToUser
+    post:
+      summary: Create a GroupToUser
+      operationId: api.GroupToUser.create_group_to_user
+      requestBody:
+        description: The GroupToUser
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: modells.yaml#/components/schemas/CreateGroupToUser
+            x-s2o-item: true
+      responses:
+        '404':
+          x-s2o-item: true
+          description: Resource Not Found
+        '201':
+          description: The Grouptouser created
+          content:
+            application/json:
+              schema:
+                $ref: modells.yaml#/components/schemas/GroupToUser
+        '403':
+          x-s2o-item: true
+          description: Resource not accessible
+      x-target-model: GroupToUser
+  /group_to_user/{group_to_user_id}:
+    get:
+      summary: Get a(n) GroupToUser
+      operationId: api.GroupToUser.get_group_to_user
+      parameters:
+        - in: path
+          name: group_to_user_id
+          description: The target Grouptouser id
+          required: true
+          schema:
+            type: string
+            description: Originates from UUID
+            example: '''123e4567-e89b-12d3-a456-426614174000'''
+          x-s2o-item: true
+      responses:
+        '404':
+          x-s2o-item: true
+          description: Resource Not Found
+        '200':
+          x-s2o-item: true
+          description: All Grouptouser(s) returned
+          content:
+            application/json:
+              schema:
+                $ref: modells.yaml#/components/schemas/GroupToUser
+              x-s2o-item: true
+        '403':
+          x-s2o-item: true
+          description: Resource not accessible
+      x-target-model: GroupToUser
+    put:
+      summary: Update a(n) GroupToUser
+      operationId: api.GroupToUser.update_group_to_user
+      parameters:
+        - in: path
+          name: group_to_user_id
+          description: The target Grouptouser id
+          required: true
+          schema:
+            type: string
+            description: Originates from UUID
+            example: '''123e4567-e89b-12d3-a456-426614174000'''
+          x-s2o-item: true
+      requestBody:
+        description: The update body for GroupToUser
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: modells.yaml#/components/schemas/UpdateGroupToUser
+            x-s2o-item: true
+      responses:
+        '404':
+          x-s2o-item: true
+          description: Resource Not Found
+        '200':
+          description: The Grouptouser target has been updated
+          content:
+            application/json:
+              schema:
+                $ref: modells.yaml#/components/schemas/GroupToUser
+        '403':
+          x-s2o-item: true
+          description: Resource not accessible
+      x-target-model: GroupToUser
+    delete:
+      summary: Delete a(n) GroupToUser
+      operationId: api.GroupToUser.delete_group_to_user
+      parameters:
+        - in: path
+          name: group_to_user_id
+          description: The target Grouptouser id
+          required: true
+          schema:
+            type: string
+            description: Originates from UUID
+            example: '''123e4567-e89b-12d3-a456-426614174000'''
+          x-s2o-item: true
+      responses:
+        '404':
+          x-s2o-item: true
+          description: Resource Not Found
+        '204':
+          x-s2o-item: true
+          description: The Grouptouser is deleted
+        '403':
+          x-s2o-item: true
+          description: Resource not accessible
+      x-target-model: GroupToUser
+  /group_to_user/{group_to_user_id}/user:
+    get:
+      summary: Get a(n) User
+      operationId: api.GroupToUser.get_group_to_user_user
+      parameters:
+        - in: path
+          name: group_to_user_id
+          description: The target Grouptouser id
+          required: true
+          schema:
+            type: string
+            description: Originates from UUID
+            example: '''123e4567-e89b-12d3-a456-426614174000'''
+          x-s2o-item: true
+      responses:
+        '404':
+          x-s2o-item: true
+          description: Resource Not Found
+        '200':
+          x-s2o-item: true
+          description: All Grouptouser(s) returned
+          content:
+            application/json:
+              schema:
+                $ref: modells.yaml#/components/schemas/User
+              x-s2o-item: true
+        '403':
+          x-s2o-item: true
+          description: Resource not accessible
+      x-target-model: GroupToUser
+      x-target-relation: user
+  /group_to_user/{group_to_user_id}/group:
+    get:
+      summary: Get a(n) Group
+      operationId: api.GroupToUser.get_group_to_user_group
+      parameters:
+        - in: path
+          name: group_to_user_id
+          description: The target Grouptouser id
+          required: true
+          schema:
+            type: string
+            description: Originates from UUID
+            example: '''123e4567-e89b-12d3-a456-426614174000'''
+          x-s2o-item: true
+      responses:
+        '404':
+          x-s2o-item: true
+          description: Resource Not Found
+        '200':
+          x-s2o-item: true
+          description: All Grouptouser(s) returned
+          content:
+            application/json:
+              schema:
+                $ref: modells.yaml#/components/schemas/Group
+              x-s2o-item: true
+        '403':
+          x-s2o-item: true
+          description: Resource not accessible
+      x-target-model: GroupToUser
+      x-target-relation: group

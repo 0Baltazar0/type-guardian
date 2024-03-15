@@ -37,7 +37,7 @@ type NumberRules = {
   multipleOf: number;
   default: number;
 };
-type StringType = {
+export type StringType = {
   type: "string";
   enum?: string | string[];
   format?: "date" | "date-time" | "password" | "byte" | "binary" | string;
@@ -53,20 +53,20 @@ type FileType = {
 } & Partial<CommonKeys> &
   YamlDict;
 
-type BooleanType = {
+export type BooleanType = {
   type: "boolean";
   default?: boolean;
 } & Partial<CommonKeys> &
   YamlDict;
 
-type IntegerType = {
+export type IntegerType = {
   type: "integer";
   format?: "int32" | "int64";
 } & Partial<MinMaxLength> &
   Partial<CommonKeys> &
   Partial<NumberRules> &
   YamlDict;
-type NumberType = {
+export type NumberType = {
   type: "number";
   format?: "float" | "double";
 } & Partial<MinMaxLength> &
@@ -158,7 +158,7 @@ export function typeDefine(root: ExplicitTypeDeclaration) {
   return root.type;
 }
 
-function isEnum(root: StringType) {
+export function isEnum(root: StringType) {
   if (root.enum) {
     if (typeof root.enum === "string") {
       return root.enum

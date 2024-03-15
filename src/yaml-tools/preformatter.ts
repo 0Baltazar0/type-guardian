@@ -13,6 +13,7 @@ export class Preformatter {
     this.sourceYaml = parse(
       readFileSync(this.sourceFile, { encoding: "utf-8" })
     );
+    this.removeRemote();
   }
 
   getSourceFile() {
@@ -22,6 +23,9 @@ export class Preformatter {
     key: T
   ): YAMLDocumentStructure[T] {
     return this.sourceYaml[key];
+  }
+  getAsJson() {
+    return JSON.stringify(this.sourceYaml);
   }
   isLocalRef(ref: string) {
     return ref.split("#/")[0].length == 0;

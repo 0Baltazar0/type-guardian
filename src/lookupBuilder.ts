@@ -1,8 +1,5 @@
 import { parseArgs } from "node:util";
 import { argv } from "node:process";
-import { basename, join, extname } from "path";
-import { InterfaceBundler } from "./bundle-interface/interfaceBundler";
-import { ZodBundler } from "./bundle-zod/ZodBundler";
 import { LookUpBundler } from "./bundle-const/lookUpBundler";
 
 const options = {
@@ -18,22 +15,9 @@ const { values, positionals } = parseArgs({
 });
 if (!values.input || !values.output)
   throw Error("Must set input -i  and output -o");
-ZodBundler.from_file_or_files(values.input, values.output, "./cache").then(
-  (bundlers) => {
-    bundlers.forEach((b) => b.compile());
-  }
-);
-InterfaceBundler.from_file_or_files(
-  values.input,
-  values.output,
-  "./cache"
-).then((bundlers) => {
-  bundlers.forEach((b) => b.compile());
-});
 LookUpBundler.from_file_or_files(values.input, values.output, "./cache").then(
   (bundlers) => {
     bundlers.forEach((b) => b.compile());
   }
 );
-
 // console.log(join("./local/file.yaml", "../file2.json"));
