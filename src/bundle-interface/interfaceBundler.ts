@@ -478,8 +478,9 @@ export class InterfaceBundler {
             new Preformatter(join(source, src)),
             join(
               dest,
-              basename(source, extname(source)),
-              basename(source, extname(source)) + ".interface.ts"
+              basename(join(source, src), extname(join(source, src))),
+              basename(join(source, src), extname(join(source, src))) +
+                ".interface.ts"
             ),
             cache
           );

@@ -480,8 +480,9 @@ export class ZodBundler {
             new Preformatter(join(source, src)),
             join(
               dest,
-              basename(source, extname(source)),
-              basename(source, extname(source)) + ".zod.ts"
+              basename(join(source, src), extname(join(source, src))),
+              basename(join(source, src), extname(join(source, src))) +
+                ".zod.ts"
             ),
             cache
           );

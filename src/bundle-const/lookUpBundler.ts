@@ -113,8 +113,9 @@ export class LookUpBundler {
             new Preformatter(join(source, src)),
             join(
               dest,
-              basename(source, extname(source)),
-              basename(source, extname(source)) + ".lookup.ts"
+              basename(join(source, src), extname(join(source, src))),
+              basename(join(source, src), extname(join(source, src))) +
+                ".lookup.ts"
             ),
             cache
           );
