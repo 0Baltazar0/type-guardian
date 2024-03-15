@@ -12,6 +12,10 @@ import {zodGTRefine, zodLTRefine, zodXorRefine} from "@bunnio/type-guardian/cust
 
 # CLI usage
 
+!! FOR CLI INSTALL IT GLOBALLY !!
+
+> npm install -g @bunnio@type-guardian
+
 every file should be transformed into a folder with multiple result options
 
 ## tg-full

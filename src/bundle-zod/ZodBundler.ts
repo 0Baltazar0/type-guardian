@@ -477,7 +477,7 @@ export class ZodBundler {
         .filter((src) => src.endsWith(".yaml") || src.endsWith(".yml"))
         .map((src) => {
           return new ZodBundler(
-            new Preformatter(src),
+            new Preformatter(join(source, src)),
             join(
               dest,
               basename(source, extname(source)),

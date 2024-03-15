@@ -475,7 +475,7 @@ export class InterfaceBundler {
         .filter((src) => src.endsWith(".yaml") || src.endsWith(".yml"))
         .map((src) => {
           return new InterfaceBundler(
-            new Preformatter(src),
+            new Preformatter(join(source, src)),
             join(
               dest,
               basename(source, extname(source)),
