@@ -5,7 +5,7 @@ import {
 } from "../../yaml-tools/schema/interface";
 
 export function zodStringDefiner(root: StringType) {
-  if (isPossibleFileType(root)) return "z.Any()";
+  if (isPossibleFileType(root)) return "z.any()";
   const enumt = isEnum(root);
   if (enumt) return `z.string().and(z.enum([${enumt.join(", ")}]))`;
   const buildChain: string[] = [];
