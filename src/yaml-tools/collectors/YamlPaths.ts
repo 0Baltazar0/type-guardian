@@ -14,7 +14,7 @@ export type OperationObject = {
   operationId?: string;
   parameters?: ParameterType[];
   requestBody?: RequestBodies | RefType;
-  responses: { [key: string]: ResponsesType; default: ResponsesType };
+  responses: { [key: string]: ResponsesType } & { default?: ResponsesType };
   deprecated?: boolean;
   security?: SecurityRequirements[];
   servers?: ServerObject[];
