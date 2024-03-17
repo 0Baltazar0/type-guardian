@@ -3,28 +3,31 @@ export type YamlType =
   | string
   | boolean
   | YamlType[]
-  | { [key: string]: YamlType };
+  | ({ [key: string]: YamlType } | ExtraYamlStuff);
 
 export type YamlDict = { [key: string]: YamlType };
+export type ExtraYamlStuff = { [key: `x-${string}`]: YamlType };
 type ObjectDescriptor = YamlDict;
-export type RefType = { $ref: string };
+export type RefType = { $ref: string } & ExtraYamlStuff;
 export type TypeDeclaration =
   | oneOfType
   | RefType
   | allOfType
   | anyOfType
   | ExplicitTypeDeclaration;
-export type ExplicitTypeDeclaration =
+export type ExplicitTypeDeclaration = (
   | StringType
   | ArrayType
   | ObjectType
   | BooleanType
   | NumberType
-  | IntegerType;
-export type oneOfType = { oneOf: TypeDeclaration[] };
-export type anyOfType = { anyOf: TypeDeclaration[] };
-export type allOfType = { allOf: TypeDeclaration[] };
-export type CommonKeys = { nullable: boolean; title: string };
+  | IntegerType
+) &
+  ExtraYamlStuff;
+export type oneOfType = { oneOf: TypeDeclaration[] } & ExtraYamlStuff;
+export type anyOfType = { anyOf: TypeDeclaration[] } & ExtraYamlStuff;
+export type allOfType = { allOf: TypeDeclaration[] } & ExtraYamlStuff;
+export type CommonKeys = { nullable: boolean; title: string } & ExtraYamlStuff;
 export type MinMaxLength = {
   minLength: number;
   maxLength: number;

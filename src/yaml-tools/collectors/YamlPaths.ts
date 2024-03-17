@@ -1,4 +1,4 @@
-import { RefType } from "../schema/interface";
+import { ExtraYamlStuff, RefType } from "../schema/interface";
 import { ExternalDocsStructure } from "../misc/interface";
 import { ParameterType } from "../parameters/interface";
 import { RequestBodies } from "../requestBodies/interface";
@@ -18,7 +18,7 @@ export type OperationObject = {
   deprecated?: boolean;
   security?: SecurityRequirements[];
   servers?: ServerObject[];
-};
+} & ExtraYamlStuff;
 
 export type PathObject = {
   summary?: string;
@@ -33,7 +33,7 @@ export type PathObject = {
   head?: OperationObject;
   patch?: OperationObject;
   trace?: OperationObject;
-};
+} & ExtraYamlStuff;
 export type PathStructure = {
   [key: string]: PathObject;
-};
+} & ExtraYamlStuff;

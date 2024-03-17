@@ -1,4 +1,4 @@
-import { YamlDict } from "../schema/interface";
+import { ExtraYamlStuff, YamlDict } from "../schema/interface";
 
 type BasicAuth = { type: "http"; scheme: "basic" } & YamlDict;
 type BearerAuth = {
@@ -50,4 +50,4 @@ export type SecuritySchema =
   | OauthAuth
   | OIDCAuth;
 
-export type SecurityRequirements = { [key: string]: string[] };
+export type SecurityRequirements = { [key: string]: string[] } & ExtraYamlStuff;

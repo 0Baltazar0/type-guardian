@@ -1,4 +1,5 @@
 import {
+  ExtraYamlStuff,
   RefType,
   TypeDeclaration,
   YamlDict,
@@ -16,7 +17,7 @@ type ParameterRaw = {
   deprecated?: boolean;
   example: YamlType;
   examples: { [key: string]: ExampleType };
-};
+} & ExtraYamlStuff;
 
 type ParameterSchema = ParameterRaw & { schema: TypeDeclaration };
 type ParameterContent = ParameterRaw & { content: ContentEntry };
