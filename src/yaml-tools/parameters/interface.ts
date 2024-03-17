@@ -12,11 +12,11 @@ type ParameterRaw = {
   name: string;
   required?: boolean;
   description?: string;
-  style: string;
+  style?: string;
   explode?: boolean;
   deprecated?: boolean;
-  example: YamlType;
-  examples: { [key: string]: ExampleType };
+  example?: YamlType;
+  examples?: { [key: string]: ExampleType };
 } & ExtraYamlStuff;
 
 type ParameterSchema = ParameterRaw & { schema: TypeDeclaration };
