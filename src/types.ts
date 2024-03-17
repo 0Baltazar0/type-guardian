@@ -1,21 +1,21 @@
 import { ZodAny } from "zod";
-
-export interface ZodHelpers {
-  requestBody: { [key: string]: ZodAny };
+export { YAMLDocumentStructure } from "./yaml-tools/YamlDomStructure";
+export interface Descriptor<Data extends any | ZodAny> {
+  requestBody: { [key: string]: Data };
   parameters: {
-    path?: { [key: string]: ZodAny };
-    query?: { [key: string]: ZodAny };
-    cookies?: { [key: string]: ZodAny };
-    headers?: { [key: string]: ZodAny };
+    path?: { [key: string]: Data };
+    query?: { [key: string]: Data };
+    cookies?: { [key: string]: Data };
+    headers?: { [key: string]: Data };
   };
-  responses: { [key: string]: ZodAny };
+  responses: { [key: string]: Data };
   OperationObject: {
-    requestBody?: ZodHelpers["requestBody"];
-    responses: ZodHelpers["responses"];
-    parameters?: ZodHelpers["parameters"];
+    requestBody?: Descriptor<Data>["requestBody"];
+    responses: Descriptor<Data>["responses"];
+    parameters?: Descriptor<Data>["parameters"];
   };
   PathObject: {
-    [key: string]: ZodHelpers["OperationObject"];
+    [key: string]: Descriptor<Data>["OperationObject"];
   };
-  paths: { [key: string]: ZodHelpers["PathObject"] };
+  paths: { [key: string]: Descriptor<Data>["PathObject"] };
 }
