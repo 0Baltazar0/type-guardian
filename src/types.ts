@@ -8,7 +8,7 @@ export interface Descriptor<Data extends any | ZodAny> {
     cookies?: { [key: string]: Data };
     headers?: { [key: string]: Data };
   };
-  responses: { [key: string]: Data };
+  responses: { [key: string]: Data | Descriptor<Data>["requestBody"] };
   OperationObject: {
     requestBody?: Descriptor<Data>["requestBody"];
     responses: Descriptor<Data>["responses"];
