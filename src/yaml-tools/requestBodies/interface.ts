@@ -15,8 +15,8 @@ type EncodingObject = {
 type MediaTypeObject = {
   schema: TypeDeclaration;
   example?: YamlType;
-  examples: { [key: string]: YamlType };
-  encoding: { [key: string]: EncodingObject };
+  examples?: { [key: string]: YamlType };
+  encoding?: { [key: string]: EncodingObject };
 } & ExtraYamlStuff;
 export type ContentEntry = { [key: string]: MediaTypeObject } & ExtraYamlStuff;
 export type RequestBodies = {
