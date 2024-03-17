@@ -16,7 +16,7 @@ export type OperationObject = {
   requestBody?: RequestBodies | RefType;
   responses: { [key: string]: ResponsesType; default: ResponsesType };
   deprecated?: boolean;
-  security: SecurityRequirements[];
+  security?: SecurityRequirements[];
   servers?: ServerObject[];
 };
 
