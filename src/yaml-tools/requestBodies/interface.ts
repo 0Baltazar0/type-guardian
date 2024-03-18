@@ -5,14 +5,14 @@ import {
   YamlType,
 } from "../schema/interface";
 import { HeadersObject } from "../headers/interface";
-type EncodingObject = {
+export type EncodingObject = {
   contentType?: string;
   headers?: { [key: string]: HeadersObject | RefType };
   style?: string;
   explode?: boolean;
   allowReserved?: boolean;
 } & ExtraYamlStuff;
-type MediaTypeObject = {
+export type MediaTypeObject = {
   schema: TypeDeclaration;
   example?: YamlType;
   examples?: { [key: string]: YamlType };
