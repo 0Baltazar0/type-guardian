@@ -1,5 +1,9 @@
 import { ZodAny } from "zod";
 export { YAMLDocumentStructure } from "./yaml-tools/YamlDomStructure";
+export interface DescriptorPath<Data> {
+  [key: string]: Descriptor<Data>["PathObject"];
+}
+
 export interface Descriptor<Data extends any | ZodAny> {
   requestBody: { [key: string]: Data };
   parameters: {
