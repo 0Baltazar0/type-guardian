@@ -371,7 +371,9 @@ export class InterfaceBundler {
   translatePaths(): string | undefined {
     const paths = this.source.getRootLevelKey("paths");
     if (paths) {
-      return `export interface paths {${Object.keys(paths)
+      return `export interface paths extends DescriptorPath<any> {${Object.keys(
+        paths
+      )
         .map((key) => {
           return `"${key}":${this.unWindPaths(paths[key])}`;
         })
@@ -422,6 +424,9 @@ export class InterfaceBundler {
   compile() {
     this.source.removeRemote();
     const components = this.translateComponents();
+    this.dataLines.push(
+      `import {  DescriptorPath} from "@bunnio/type-guardian/dist/types"`
+    );
     this.dataLines.push(components);
     const paths = this.translatePaths();
     if (paths) this.dataLines.push(paths);
