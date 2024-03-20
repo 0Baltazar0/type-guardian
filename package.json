@@ -1,6 +1,6 @@
 {
   "name": "@bunnio/type-guardian",
-  "version": "0.0.8-rc.12",
+  "version": "0.0.8-rc.13",
   "description": "Openapi translator to typescript interface and zod objects",
   "main": "src/index.ts",
   "scripts": {
