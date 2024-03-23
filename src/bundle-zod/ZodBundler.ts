@@ -94,14 +94,14 @@ export class ZodBundler {
           .join(",")}))`;
       }
       if ("anyOf" in root) {
-        return root.anyOf
-          .map((td) => `z.any().or(${this.unWindTypeDeclaration(td)})`)
-          .join("");
+        return `z.any()${root.anyOf
+          .map((td) => `.or(${this.unWindTypeDeclaration(td)})`)
+          .join("")}`;
       }
       if ("allOf" in root) {
-        return root.allOf
-          .map((td) => `z.any().and(${this.unWindTypeDeclaration(td)})`)
-          .join("");
+        return `z.any()${root.allOf
+          .map((td) => `.and(${this.unWindTypeDeclaration(td)})`)
+          .join("")}`;
       }
       if ("$ref" in root) {
         return this.refToComponent(root["$ref"]);
